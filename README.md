@@ -200,3 +200,49 @@ for layer in base_model.layers:
 <img src = "https://user-images.githubusercontent.com/39016197/92844118-bda24000-f3a2-11ea-9cf1-cceb44fbffd2.png" width = 750 height = 550>
 
 
+Finally, I'll begin building the rest of my Functional API model using the Xception model as my base. I'll also be adding 2 convolutional layers, that are followed by a dropout and average pool layer, until the model is flattened into one channel. Then I'll add a batch normalization layer, a hidden layer with 250 nodes, followed by a last dropout and our final softmax layer with 180 nodes – representing each bird species. The learning rate yielded best results when set at 0.0001 on the Adam Optimizer, the loss will be categorical crossentrophy and our standard metric will be accuracy.
+
+```
+inputs = Input(shape=(224,224,3))
+
+base = base_model (inputs)
+
+conv1 = Conv2D(184, (3,3), padding = 'same', activation='relu')(base)
+
+drop1 = Dropout(0.3)(conv1)
+
+conv2 = Conv2D(184, (3,3), padding = 'same', activation='relu')(drop1)
+
+avgp = AveragePooling2D((3,3), padding = 'same')(conv2)
+
+flat = Flatten()(avgp)
+
+Bn = BatchNormalization()(flat)
+
+hidden = Dense(250, activation='relu')(Bn)
+
+drop2 = Dropout(0.3)(hidden)
+
+output = Dense(180, activation='softmax')(drop2)
+
+model = Model(inputs=inputs, outputs=output)
+
+model.compile(tf.keras.optimizers.Adam(learning_rate=0.0001),
+               loss = 'categorical_crossentropy',
+               metrics = ['accuracy'])
+```
+
+Next, I'll print out a visual image of this architecture. While I really wanted to go for the fancy shared layers set up and split the layers a few different ways, in the end it turned out that a single path model here gave the best results.
+
+```
+plot_model(model)
+```
+
+<img src = "https://user-images.githubusercontent.com/39016197/92844585-428d5980-f3a3-11ea-926a-25b96b3c01a2.png" width = 300 height = 800>
+
+I also ran a summary of my final model to see how the input shape is converted through the layers and how the shape of the final output looks. While there is over 25 million parameters in this model, only roughly 7.3 parameters are trainable since we froze most of the xception model's weights.
+
+```
+print('My Model with Transer Learning', model.summary())
+```
+<img src = "https://user-images.githubusercontent.com/39016197/92844976-ac0d6800-f3a3-11ea-8ba6-c0f37a85b861.png" width = 550 height = 600>
