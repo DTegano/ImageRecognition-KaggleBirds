@@ -1,4 +1,4 @@
-# Image Recognition- Kaggle Birds
+# Image Recognition - Kaggle Birds
 
 This repository demonstrates a Convolutional Neural Network used on Kaggle's 180 Bird Species Data Set. Within this data, there are 24,507 training images for the 180 different bird species, along with 900 validation and test images. This project was done using Google Colaboratory. 
 
@@ -174,4 +174,16 @@ plt.show()
 <img src = "https://user-images.githubusercontent.com/39016197/92842553-ef1a0c00-f3a0-11ea-9da8-e918730c3943.png" width = 300 height = 600>
 <img src = "https://user-images.githubusercontent.com/39016197/92842741-2ab4d600-f3a1-11ea-92be-5f6b0232d069.png" width = 300 height = 600>
 
+# Convolutional Neural Network
 
+Now that my data is set up for machine learning, I'll load in my transfer learning model. In the library list above, I chose to load in the 'xception' model from keras. Since this is a pre-trained data set, using transfer learning will save my model a bunch of time on learning simple patterns that the xception model has already been trained using the ImageNet (which is the weights I'll be loading in). I'll also print a summary command to see the architecture of this model. I'll note that since the architecture of the model is long, I'll only show the last bit of the summary:
+
+```
+backend.clear_session()
+base_model = Xception (weights = 'imagenet', # using the weights trained on imagenet
+                  include_top = False,
+                  input_shape = (224, 224, 3))
+
+print('Xception Model', base_model.summary())
+```
+<img src = "https://user-images.githubusercontent.com/39016197/92843538-158c7700-f3a2-11ea-8e4b-720f98afefa8.png" width = 800 height = 800>
