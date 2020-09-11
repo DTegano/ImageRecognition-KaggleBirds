@@ -187,3 +187,16 @@ base_model = Xception (weights = 'imagenet', # using the weights trained on imag
 print('Xception Model', base_model.summary())
 ```
 <img src = "https://user-images.githubusercontent.com/39016197/92843538-158c7700-f3a2-11ea-8e4b-720f98afefa8.png" width = 800 height = 800>
+
+Now that I have my transfer learning model established, I'll need to make sure that the pre-established weights will be frozen so that my model doesn't need to spend any time learning the basic patterns. After some trial and error, I've determined that my model best performs when all of the weights are frozen except for the last 3 layers - which is 1 convolutional layer with a normalization and activation function. This layer will help my model learn the more complex patterns, as will the other layers that I will be adding on to my model:
+
+```
+for layer in base_model.layers[:-3]:
+    layer.trainable = False
+for layer in base_model.layers:
+    print(layer, layer.trainable)
+```
+
+<img src = "https://user-images.githubusercontent.com/39016197/92844118-bda24000-f3a2-11ea-9cf1-cceb44fbffd2.png" width = 750 height = 550>
+
+
