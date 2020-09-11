@@ -45,7 +45,7 @@ validation_dir = os.path.join(data_dir, 'valid')
 test_dir = os.path.join(data_dir, 'test')
 ```
 
-The below was probably the biggest nuisance of this project.
+The below was probably the biggest nuisance of this project. For each directory, I set up an individual directory for each bird species:
 
 ```
 train_ALBATROSS_dir = os.path.join(train_dir, 'ALBATROSS')
@@ -79,4 +79,21 @@ validation_ANTBIRD_dir = os.path.join(validation_dir, 'ANTBIRD')
 validation_ARARIPEMANAKIN_dir = os.path.join(validation_dir, 'ARARIPE MANAKIN')
 validation_BALDEAGLE_dir = os.path.join(validation_dir, 'BALD EAGLE')
 ...
+```
+
+# Convolutional Neural Network
+```
+print(len(os.listdir(train_dir)))
+print(len(os.listdir(train_ALBATROSS_dir)))
+print(len(os.listdir(validation_dir)))
+print(len(os.listdir(validation_ALBATROSS_dir)))
+print(len(os.listdir(test_dir)))
+print(len(os.listdir(test_ALBATROSS_dir)))
+
+180
+100
+180
+5
+180
+5
 ```
