@@ -246,3 +246,22 @@ I also ran a summary of my final model to see how the input shape is converted t
 print('My Model with Transer Learning', model.summary())
 ```
 <img src = "https://user-images.githubusercontent.com/39016197/92844976-ac0d6800-f3a3-11ea-8ba6-c0f37a85b861.png" width = 550 height = 600>
+
+Finally, I'll run the model. Every time the kernal resets, the first epoch can take at least a few hours - going up to 5 hours max. While this wasn't necessarily ideal for timing, I did eventually settle for the test accuracy below (although, I guess 98% test accuracy isn't exactly settling). The training steps per epoch was set to 100 so that each image gets passed through once per epoch, as well as the 30 steps per epoch for the validation and testing. 5 epochs seemed to be the magic number, as additional epochs led to a lesser accuracy despite restoring the best weights.
+
+```
+backend.clear_session()
+history = model.fit( 
+    train_generator, 
+    steps_per_epoch = 100,  
+    epochs=5, 
+    validation_data = validataion_generator, 
+    validation_steps = 30,
+    verbose = 1,
+    callbacks=[EarlyStopping(monitor='val_accuracy', patience=5, restore_best_weights = True)])
+
+test_loss, test_acc = model.evaluate(test_generator, steps = 30) 
+               
+print('test_acc:', test_acc)
+```
+<img src = "https://user-images.githubusercontent.com/39016197/92845529-52596d80-f3a4-11ea-9f01-697e3072b355.png" width = 850 height = 250>
