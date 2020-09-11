@@ -155,6 +155,9 @@ Next, to make sure my data augmentation worked correctly, I'll pull up an image 
 Here is the original image: <p></p>
 <img src = "https://user-images.githubusercontent.com/39016197/92841932-2805b100-f3a0-11ea-9616-a3ff7f48d89a.png" width = 300 height = 300>
 
+
+Here are the augmented photos:
+
 ```
 img = image.load_img(os.path.join(train_ROSYFACEDLOVEBIRD_dir, os.listdir(train_ROSYFACEDLOVEBIRD_dir)[1]), target_size=(224,224))
 x = image.img_to_array(img)
@@ -168,6 +171,6 @@ for batch in train_datagen.flow(x, batch_size=1):
         break
 plt.show()
 ```
-
+<img src = "https://user-images.githubusercontent.com/39016197/92842553-ef1a0c00-f3a0-11ea-9da8-e918730c3943.png" width = 300 height = 600>
 
 
