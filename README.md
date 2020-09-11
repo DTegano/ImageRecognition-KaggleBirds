@@ -265,3 +265,30 @@ test_loss, test_acc = model.evaluate(test_generator, steps = 30)
 print('test_acc:', test_acc)
 ```
 <img src = "https://user-images.githubusercontent.com/39016197/92845529-52596d80-f3a4-11ea-9f01-697e3072b355.png" width = 850 height = 250>
+
+```
+history_dict = history.history
+loss_values = history_dict['loss']
+val_loss_values = history_dict['val_loss']
+acc_values = history_dict['accuracy']
+val_acc_values = history_dict['val_accuracy']
+epochs = range(1, len(history_dict['accuracy']) + 1)
+
+plt.plot(epochs, loss_values, 'bo', label = 'Training loss')
+plt.plot(epochs, val_loss_values, 'b', label = 'Validation loss')
+plt.title('Training and validation loss')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
+
+plt.plot(epochs, acc_values, 'bo', label = 'Training accuracy')
+plt.plot(epochs, val_acc_values, 'b', label = 'Validation accuracy')
+plt.title('Training and validation accuracy')
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.show()
+```
+
+<img src = "https://user-images.githubusercontent.com/39016197/92845979-ca279800-f3a4-11ea-8827-eafbea29098c.png" width = 400 height = 500>
