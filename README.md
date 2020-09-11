@@ -31,6 +31,52 @@ from PIL import Image
 import os, shutil # Library for navigating files
 np.random.seed(18)
 ```
-# Importing the Data
+# Importing and setting up the Data
+```
+drive.mount('/content/gdrive')
+data_dir = '/content/gdrive/My Drive/KaggleBirds/180'
+```
 
+With a data set this large, I found it was best to upload the images to my google drive and import the data from my Google Drive once mounted. Next, I need to set up separate directories from my training, validation, and test images.
 
+```
+train_dir = os.path.join(data_dir, 'train')
+validation_dir = os.path.join(data_dir, 'valid')
+test_dir = os.path.join(data_dir, 'test')
+```
+
+The below was probably the biggest nuisance of this project.
+
+```
+train_ALBATROSS_dir = os.path.join(train_dir, 'ALBATROSS')
+train_ALEXANDRINEPARAKEET_dir = os.path.join(train_dir, 'ALEXANDRINE PARAKEET')
+train_AMERICANAVOCET_dir = os.path.join(train_dir, 'AMERICAN AVOCET')
+train_AMERICANBITTERN_dir = os.path.join(train_dir, 'AMERICAN BITTERN')
+train_AMERICANCOOT_dir = os.path.join(train_dir, 'AMERICAN COOT')
+train_AMERICANGOLDFINCH_dir = os.path.join(train_dir, 'AMERICAN GOLDFINCH')
+train_AMERICANKESTREL_dir = os.path.join(train_dir, 'AMERICAN KESTREL')
+train_AMERICANPIPIT_dir = os.path.join(train_dir, 'AMERICAN PIPIT')
+train_AMERICANREDSTART_dir = os.path.join(train_dir, 'AMERICAN REDSTART')
+train_ANHINGA_dir = os.path.join(train_dir, 'ANHINGA')
+train_ANNASHUMMINGBIRD_dir = os.path.join(train_dir, 'ANNAS HUMMINGBIRD')
+train_ANTBIRD_dir = os.path.join(train_dir, 'ANTBIRD')
+train_ARARIPEMANAKIN_dir = os.path.join(train_dir, 'ARARIPE MANAKIN')
+train_BALDEAGLE_dir = os.path.join(train_dir, 'BALD EAGLE')
+...
+
+validation_ALBATROSS_dir = os.path.join(validation_dir, 'ALBATROSS')
+validation_ALEXANDRINEPARAKEET_dir = os.path.join(validation_dir, 'ALEXANDRINE PARAKEET')
+validation_AMERICANAVOCET_dir = os.path.join(validation_dir, 'AMERICAN AVOCET')
+validation_AMERICANBITTERN_dir = os.path.join(validation_dir, 'AMERICAN BITTERN')
+validation_AMERICANCOOT_dir = os.path.join(validation_dir, 'AMERICAN COOT')
+validation_AMERICANGOLDFINCH_dir = os.path.join(validation_dir, 'AMERICAN GOLDFINCH')
+validation_AMERICANKESTREL_dir = os.path.join(validation_dir, 'AMERICAN KESTREL')
+validation_AMERICANPIPIT_dir = os.path.join(validation_dir, 'AMERICAN PIPIT')
+validation_AMERICANREDSTART_dir = os.path.join(validation_dir, 'AMERICAN REDSTART')
+validation_ANHINGA_dir = os.path.join(validation_dir, 'ANHINGA')
+validation_ANNASHUMMINGBIRD_dir = os.path.join(validation_dir, 'ANNAS HUMMINGBIRD')
+validation_ANTBIRD_dir = os.path.join(validation_dir, 'ANTBIRD')
+validation_ARARIPEMANAKIN_dir = os.path.join(validation_dir, 'ARARIPE MANAKIN')
+validation_BALDEAGLE_dir = os.path.join(validation_dir, 'BALD EAGLE')
+...
+```
