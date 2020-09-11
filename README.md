@@ -4,7 +4,7 @@ This repository demonstrates a Convolutional Neural Network used on Kaggle's 180
 
 # Libraries
 
-``
+```
 %tensorflow_version 2.x
 import tensorflow as tf
 from tensorflow.keras import models, backend, layers, optimizers
@@ -30,7 +30,7 @@ from IPython.display import display
 from PIL import Image
 import os, shutil # Library for navigating files
 np.random.seed(18)
-``
+```
 # Importing the Data
 
 
