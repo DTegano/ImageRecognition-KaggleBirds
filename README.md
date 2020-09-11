@@ -153,7 +153,7 @@ test_generator = test_datagen.flow_from_directory(
 Next, to make sure my data augmentation worked correctly, I'll pull up an image of a random picture - in this case, it was the Rosy-Faced Loved Bird. Next, I'll compare the original photo to the augmented photos:
 
 Here is the original image: <p></p>
-<img src = "https://user-images.githubusercontent.com/39016197/92841932-2805b100-f3a0-11ea-9616-a3ff7f48d89a.png" width = 300 height = 300>
+<img src = "https://user-images.githubusercontent.com/39016197/92841932-2805b100-f3a0-11ea-9616-a3ff7f48d89a.png" width = 280 height = 280>
 
 
 Here are the augmented photos:
@@ -172,5 +172,6 @@ for batch in train_datagen.flow(x, batch_size=1):
 plt.show()
 ```
 <img src = "https://user-images.githubusercontent.com/39016197/92842553-ef1a0c00-f3a0-11ea-9da8-e918730c3943.png" width = 300 height = 600>
+<img src = "https://user-images.githubusercontent.com/39016197/92842741-2ab4d600-f3a1-11ea-92be-5f6b0232d069.png" width = 300 height = 600>
 
 
