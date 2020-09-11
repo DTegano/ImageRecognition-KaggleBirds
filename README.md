@@ -4,6 +4,8 @@ This repository demonstrates a Convolutional Neural Network used on Kaggle's 180
 
 # Libraries
 
+My first step was to import all of the necessary libraries needed to complete this project. I utilized keras and tensorflow for the majority of my libraries. As you may notice, I set my seed to a particular value so that I can repeat randomization techniques and get a similar result.
+
 ```
 %tensorflow_version 2.x
 import tensorflow as tf
@@ -81,7 +83,10 @@ validation_BALDEAGLE_dir = os.path.join(validation_dir, 'BALD EAGLE')
 ...
 ```
 
-# Convolutional Neural Network
+# Exploring the Data
+
+Once all of my directories are in place, I ran a few commands to test out whether the directories were successful in their uploading. While I randomly ran a few bird species to ensure success, the below only shows the Albatross species. As we can see, there are 180 bird species in the train, validation, and test directory. For the Albatross species, there are 100 images in the training directory, and 5 images in each of the validation and test directories. This would likely indicate that the dataset contains 18,000 train images (180 species 100 images), 900 validation and testing images (180 x 5). However, as we'll see shortly, the training images doesn't appear consistent with the total # of images in the training set.
+
 ```
 print(len(os.listdir(train_dir)))
 print(len(os.listdir(train_ALBATROSS_dir)))
@@ -92,6 +97,8 @@ print(len(os.listdir(test_ALBATROSS_dir)))
 ```
 
 <img src = "https://user-images.githubusercontent.com/39016197/92836499-b591d280-f399-11ea-897d-ae395ffca092.png" width = 100 height = 150>
+
+To check these potential inconsistencies, I checked the length of 2 other species. My suspicion is confirmed when we see that the 3 species below all have a different # of training images (100, 166, and 180):
 
 ```
 # Checking for inconsistent training images among species
@@ -107,7 +114,9 @@ print(len(os.listdir(test_AMERICANAVOCET_dir)))
 ```
 <img src = "https://user-images.githubusercontent.com/39016197/92838839-82047780-f39c-11ea-88bd-82beaafdc69b.png" width = 100 height = 200>
 
-The below is for data augmentation. 
+# Data Augmentation
+
+Next, I'll use the data augmentation techniques below to replace the existing data with eventual image copies that have been rotated, zoomed-in on, etc. This will only be applied to the training and validation directories. The testing data will still needs to be rescaled so this will be handled separately without augmentation. As we can see below, the data set contains 24,507 training images, 900 test and 900 validation images. I've modified the batch sizes so that the epoch steps will only be 100 for the training data, and 30 steps for the validation/test sets (30 batches * 30 steps per epoch = 900). Since 24,507 training images is hardly a divisible number, I chose to run with a batch size of 245.
 
 ```
 train_datagen = ImageDataGenerator(
@@ -141,7 +150,7 @@ test_generator = test_datagen.flow_from_directory(
 ```
 <img src = "https://user-images.githubusercontent.com/39016197/92839322-1242bc80-f39d-11ea-8735-014b2a3deb08.png" width = 500 height = 100>
 
-Next, to make sure my data augmentation worked correctly, I'll pull up an image of a random picture in its' original format to compare it to what the augmentation does.
+Next, to make sure my data augmentation worked correctly, I'll pull up an image of a random picture - in this case, it was the Rosy-Faced Loved Bird. Next, I'll compare the original photo to the augmented photos:
 
 ```
 img = image.load_img(os.path.join(train_ROSYFACEDLOVEBIRD_dir, os.listdir(train_ROSYFACEDLOVEBIRD_dir)[1]), target_size=(224,224))
@@ -156,4 +165,7 @@ for batch in train_datagen.flow(x, batch_size=1):
         break
 plt.show()
 ```
-<img src = "https://user-images.githubusercontent.com/39016197/92839322-1242bc80-f39d-11ea-8735-014b2a3deb08.png" width = 500 height = 100>
+
+
+stop
+<img src = "https://user-images.githubusercontent.com/39016197/92841932-2805b100-f3a0-11ea-9616-a3ff7f48d89a.png" width = 300 height = 300>
