@@ -92,3 +92,68 @@ print(len(os.listdir(test_ALBATROSS_dir)))
 ```
 
 <img src = "https://user-images.githubusercontent.com/39016197/92836499-b591d280-f399-11ea-897d-ae395ffca092.png" width = 100 height = 150>
+
+```
+# Checking for inconsistent training images among species
+print(len(os.listdir(train_ALBATROSS_dir)))
+print(len(os.listdir(validation_ALBATROSS_dir)))
+print(len(os.listdir(test_ALBATROSS_dir)))
+print(len(os.listdir(train_ALEXANDRINEPARAKEET_dir)))
+print(len(os.listdir(validation_ALEXANDRINEPARAKEET_dir)))
+print(len(os.listdir(test_ALEXANDRINEPARAKEET_dir)))
+print(len(os.listdir(train_AMERICANAVOCET_dir)))
+print(len(os.listdir(validation_AMERICANAVOCET_dir)))
+print(len(os.listdir(test_AMERICANAVOCET_dir)))
+```
+<img src = "https://user-images.githubusercontent.com/39016197/92838839-82047780-f39c-11ea-88bd-82beaafdc69b.png" width = 100 height = 200>
+
+The below is for data augmentation. 
+
+```
+train_datagen = ImageDataGenerator(
+    rescale=1./255,
+    rotation_range=40,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True)
+
+test_datagen = ImageDataGenerator(rescale=1./255) 
+
+train_generator = train_datagen.flow_from_directory(
+    train_dir,
+    target_size=(224, 224),
+    batch_size=246,
+    class_mode='categorical')
+
+validataion_generator = train_datagen.flow_from_directory(
+    validation_dir,
+    target_size=(224, 224),
+    batch_size=30,
+    class_mode='categorical')
+
+test_generator = test_datagen.flow_from_directory(
+    test_dir,
+    target_size=(224, 224),
+    batch_size=30,
+    class_mode='categorical')
+```
+<img src = "https://user-images.githubusercontent.com/39016197/92839322-1242bc80-f39d-11ea-8735-014b2a3deb08.png" width = 500 height = 100>
+
+Next, to make sure my data augmentation worked correctly, I'll pull up an image of a random picture in its' original format to compare it to what the augmentation does.
+
+```
+img = image.load_img(os.path.join(train_ROSYFACEDLOVEBIRD_dir, os.listdir(train_ROSYFACEDLOVEBIRD_dir)[1]), target_size=(224,224))
+x = image.img_to_array(img)
+x = x.reshape((1,) + x.shape)
+i = 0 
+for batch in train_datagen.flow(x, batch_size=1):
+    plt.figure(i)
+    imgplot = plt.imshow(image.array_to_img(batch[0]))
+    i += 1
+    if i % 4 == 0:
+        break
+plt.show()
+```
+<img src = "https://user-images.githubusercontent.com/39016197/92839322-1242bc80-f39d-11ea-8735-014b2a3deb08.png" width = 500 height = 100>
