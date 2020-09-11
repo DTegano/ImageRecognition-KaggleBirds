@@ -89,11 +89,6 @@ print(len(os.listdir(validation_dir)))
 print(len(os.listdir(validation_ALBATROSS_dir)))
 print(len(os.listdir(test_dir)))
 print(len(os.listdir(test_ALBATROSS_dir)))
-
-180
-100
-180
-5
-180
-5
 ```
+
+<img src = "https://user-images.githubusercontent.com/39016197/92836499-b591d280-f399-11ea-897d-ae395ffca092.png" width = 100 height = 150>
