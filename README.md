@@ -152,6 +152,9 @@ test_generator = test_datagen.flow_from_directory(
 
 Next, to make sure my data augmentation worked correctly, I'll pull up an image of a random picture - in this case, it was the Rosy-Faced Loved Bird. Next, I'll compare the original photo to the augmented photos:
 
+Here is the original image: <p></p>
+<img src = "https://user-images.githubusercontent.com/39016197/92841932-2805b100-f3a0-11ea-9616-a3ff7f48d89a.png" width = 300 height = 300>
+
 ```
 img = image.load_img(os.path.join(train_ROSYFACEDLOVEBIRD_dir, os.listdir(train_ROSYFACEDLOVEBIRD_dir)[1]), target_size=(224,224))
 x = image.img_to_array(img)
@@ -167,5 +170,4 @@ plt.show()
 ```
 
 
-stop
-<img src = "https://user-images.githubusercontent.com/39016197/92841932-2805b100-f3a0-11ea-9616-a3ff7f48d89a.png" width = 300 height = 300>
+
