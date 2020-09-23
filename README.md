@@ -1,4 +1,4 @@
-# Image Recognition - Kaggle Birds
+# Image Recognition - Kaggle's Birds Data Set
 
 This repository demonstrates a Convolutional Neural Network used on Kaggle's 180 Bird Species Data Set. Within this data, there are 24,507 training images for the 180 different bird species, along with 900 validation and test images. This project was done using Google Colaboratory. Using transfer learning and API functional, I trained the CNN and ran different architectures to get the highest test accuracy possible. In the end, I was able to exceed 98% accuracy. I believe I could have surpassed this mark in my project deadline if I was able to run the full model, with more epochs, in less than an hour. On average, 5 epochs took anywhere from 2-5 hours for one model.
 
